@@ -21,7 +21,7 @@ class NewShipping(models.Model):
     arrive_date = fields.Date(string="Arrive Date")
     is_quarentine = fields.Boolean(string="Is Quarentine", default=False)
     is_there_freight_prepaid = fields.Boolean(string="Is There Freight Prepaid", default=False)
-    attachment_ids = fields.Many2one('ir.attachment', string='Attachments Link')
+    attachment = fields.Char(string='Attachments Link')
 
     @api.model
     def create(self, vals):

@@ -40,7 +40,7 @@
                             <field name="agent_id"/>
                             <field name="captain_id" required="True"/>
                             <field name="arrive_date"/>
-                            <field name="attachment_ids"/>
+                            <field name="attachment" widget="url"/>
                         </group>
                     </group>
                 </sheet>
