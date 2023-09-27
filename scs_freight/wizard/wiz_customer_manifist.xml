@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Form View of Track Shipping Order -->
+    <record id="wiz_customer_manifiest_view" model="ir.ui.view">
+        <field name="name">wiz.customer.manifist.view</field>
+        <field name="model">wiz.customer.manifist</field>
+        <field name="arch" type="xml">
+            <form string="Add Customer">
+           <sheet>
+                    <group>
+                        <group>
+                           <field name = "shipper_name"/>
+                           <field name = "consignee_name"/>
+                           <field name = "total_no_of_contanier"/>
+                            <field name = "total_weight"/>
+                        </group>
+                        <group>
+                             <field name = "final_port"/>
+                             <field name = "total_package"/>
+                              <field name = "discription"/>
+                        </group>
+                    </group>                      
+                                   
+                    <footer>
+                         <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                        />
+                        <button name="action_done" string="Save" type="object" class="btn-primary"/>
+                  
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Action View of Track Shipping Order -->
+   
+    <record model="ir.actions.act_window" id="action_customer_manifist">
+        <field name="name">Add Customer Manifist</field>
+        <field name="res_model">wiz.customer.manifist</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+     <record id="wiz_customer_invoice_view" model="ir.ui.view">
+        <field name="name">wiz.invoice.view</field>
+        <field name="model">wiz.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                 <button name="action_done" string="Supplies invoice" type="object" style="margin-top=5px;width:250px;" class="btn-primary"/><br/><br/>
+                 <button name="action_done" string="Other Services invoice" type="object" style="margin-top=5px;width:250px;" class="btn-primary"/><br/><br/>
+                 <button name="action_done" string="Delivery Permit invoice" type="object" style="margin-top=5px;width:250px;" class="btn-primary"/><br/>
+            </form>
+            <footer>
+                <button class="btn btn-secondary" special="cancel">
+                    <i class="fa fa-close" role="img"/> Discard
+                </button>
+            </footer>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="action_customer_invoice">
+        <field name="name">Invoice</field>
+        <field name="res_model">wiz.invoice</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+   
+     <record id="wiz_line_invoice_view" model="ir.ui.view">
+        <field name="name">line.invoice.view</field>
+        <field name="model">wiz.line.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                 <button name="delivery_permit_invoice" string="Freight prepaid invoice" type="object" style="margin-top=5px;width:250px;" class="btn-primary"/><br/><br/>
+                 <button name="freight_prepaid_invoice" string="Quarantine invoice" type="object" style="margin-top=5px;width:250px;" class="btn-primary"/><br/><br/>
+                 <button name="Quarantine_invoice" string="Delivery permit invoice" type="object" style="margin-top=5px;width:250px;" class="btn-primary"/><br/>
+            </form>
+            <footer>
+                <button class="btn btn-secondary" special="cancel">
+                    <i class="fa fa-close" role="img"/> Discard
+                </button>
+            </footer>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="action_line_invoice">
+        <field name="name">Invoice</field>
+        <field name="res_model">wiz.line.invoice</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

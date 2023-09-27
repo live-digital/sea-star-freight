@@ -1,0 +1,75 @@
+<odoo>
+
+    <!-- New Shipment Form View -->
+    <record id="view_new_manifiest_form" model="ir.ui.view">
+        <field name="name">view.new.manifist.form</field>
+        <field name="model">new.manifist</field>
+        <field name="arch" type="xml">
+            <form string="New Shipment">
+                 <header>
+                 <button name="my_button" string="Add Customer" type="object" class="btn 
+                btn-primary"/>
+            </header>
+                <sheet>
+                   
+                    <group>
+                        <group>
+                            <field name="arrive_date"/>
+                            <field name="loading_port_id"/>
+                            <field name="discharg_port_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                     <page string="Manifist">
+                            <field
+                                name="manifist_line_ids">
+                                <tree editable="top">
+                                    
+                                    <field name="shipper_name"/>
+                                    <field name="consignee_name"/>
+                                    <field name="total_no_of_contanier" />
+                                    <field name="total_weight"/>
+                                    <field name="total_package"/>
+                                    <!-- <field name="consignee_name"/> -->
+                                     <field name="final_port"/>
+                                      <button name="my_invoicing" string="Invoicing" type="object"
+                                              class="btn btn-primary"/>
+                                        <button name="unlink" type="object" string="Delete"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                            
+                </sheet>
+                <!-- <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div> -->
+            </form>
+        </field>
+    </record>
+    <!-- New Shipment tree view -->
+    <record id="view_new_manifiest_tree" model="ir.ui.view">
+        <field name="name">view.new.manifist.tree</field>
+        <field name="model">new.manifist</field>
+        <field name="arch" type="xml">
+
+            <tree>
+               
+                <field name="arrive_date"/>
+                <field name="loading_port_id"/>
+                <field name="discharg_port_id"/>
+
+
+                
+            </tree>
+        </field>
+    </record>
+     <record id="action_new_manifest" model="ir.actions.act_window">
+        <field name="name">Manifest</field>
+        <field name="res_model">new.manifist</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+
