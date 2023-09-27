@@ -15,5 +15,12 @@
             <field name="prefix">CN</field>
             <field name="padding">4</field>
         </record>
+
+        <!-- Sequence for Shipping -->
+        <record id="seq_new_shipping" model="ir.sequence">
+            <field name="name">New Shipping Sequence</field>
+            <field name="code">new.shipping</field>
+            <field name="padding">2</field>
+        </record>
     </data>
 </odoo>
