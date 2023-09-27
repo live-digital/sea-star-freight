@@ -10,9 +10,9 @@
                 <field name="code" />
                 <field name="country_id" />
                 <field name="state_id" />
-                <field name="is_land" />
                 <field name="is_ocean" />
-                <field name="is_air" />
+<!--                <field name="is_land" />-->
+<!--                <field name="is_air" />-->
             </tree>
         </field>
     </record>
@@ -27,9 +27,9 @@
                         <group>
                             <field name="name" required="1" />
                             <field name="country_id" />
-                            <field name="is_land" />
                             <field name="is_ocean" />
-                            <field name="is_air" />
+<!--                            <field name="is_land" />-->
+<!--                            <field name="is_air" />-->
                         </group>
                         <group>
                             <field name="code" required="1" />
@@ -262,14 +262,14 @@
         groups="freight_operation_admin"
     />
     <!-- Airlines Menu -->
-    <menuitem
-        id="airline_menu"
-        name="Airlines"
-        parent="main_menu_freight_config"
-        action="airline_config_action"
-        sequence="3"
-        groups="freight_operation_admin"
-    />
+<!--    <menuitem-->
+<!--        id="airline_menu"-->
+<!--        name="Airlines"-->
+<!--        parent="main_menu_freight_config"-->
+<!--        action="airline_config_action"-->
+<!--        sequence="3"-->
+<!--        groups="freight_operation_admin"-->
+<!--    />-->
     <!-- Vontainer Menu -->
     <menuitem
         id="container_menu"
