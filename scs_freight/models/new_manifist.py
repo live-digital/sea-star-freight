@@ -48,21 +48,13 @@ class NewManifistLine(models.Model):
     total_no_of_contanier = fields.Char(string="Total Container")
     total_weight = fields.Char(string="Total Weight")
     total_package = fields.Char(string="Total Package")
-    discription = fields.Char(string="Discription")
+    description = fields.Text(string="Description")
     consignee_name = fields.Char(string="Consignee Name")
     final_port = fields.Many2one("freight.port", string="Final Port")
 
-
-    # def unlink(self):
-    #     print("shiva")
-    #     for rec in self:
-
-  
-
     def my_invoicing(self):
-        print("shivaaaaaaaaaaaaaaaaaaaa")
         return {
-            'name': "Invoicing",
+            'name': '',
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',

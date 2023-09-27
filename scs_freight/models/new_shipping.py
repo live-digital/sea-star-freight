@@ -1,8 +1,4 @@
-# See LICENSE file for full copyright and licensing details.
-"""This Module Contain information related to freight Configuration."""
-
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 from datetime import datetime
 
 class NewShipping(models.Model):
@@ -10,9 +6,8 @@ class NewShipping(models.Model):
 
     _name = "new.shipping"
     _description = "New Shipment"
-    _inherit = ["portal.mixin", "mail.thread", "mail.activity.mixin"]
 
-    name = fields.Char(string="Ship Name",default="New")
+    name = fields.Char(string="Shipment Name",default="New")
     shipname = fields.Char(string="Ship Name")
     country_id = fields.Many2one("res.country", string="Country")
     loading_port_id = fields.Many2one("freight.port", string="Loading Port")
@@ -38,28 +33,21 @@ class NewShipping(models.Model):
     def action_freight_prepaid_bill(self):
         print("action")
 
-   
     def get_manifest(self):
-        action = self.env['ir.actions.act_window']._for_xml_id('scs_freight.action_new_manifest')
-        new_manifest = self.env['new.manifist'].search([('shipping_id', '=', self.id)])
-        if new_manifest:
-            pass
-        else:
-            manifest_value = {'loading_port_id':self.loading_port_id.id,
-                              'discharg_port_id':self.discharg_port_id.id,
-                              'arrive_date': self.arrive_date,
-                              'shipping_id':self.id,}
-
-            new_manifest_id = new_manifest.create(manifest_value)
-            action['domain'] = [('shipping_id', '=', self.id)]
-
-        return action
-
-        
-    def get_services(self):
-        print("shivaaaaaaaaaaaaaaaaaaaa")
         return {
-            'name': "Invoice",
+            'name': 'Manifest',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree,form',
+            'res_model': 'new.manifist',
+            'target': 'current',
+            'domain': [('shipping_id', '=', self.id)],
+            'context': {'default_shipping_id': self.id, 'default_loading_port_id': self.loading_port_id.id,
+                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date}
+        }
+
+    def get_services(self):
+        return {
+            'name': '',
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',

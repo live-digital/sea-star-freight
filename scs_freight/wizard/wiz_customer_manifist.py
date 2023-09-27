@@ -16,12 +16,11 @@ class WizCustomerManifist(models.TransientModel):
     total_no_of_contanier = fields.Char(string="Total Container")
     total_weight = fields.Char(string="Total Weight")
     total_package = fields.Char(string="Total Package")
-    discription = fields.Char(string="Discription")
+    description = fields.Text(string="Description")
     consignee_name = fields.Char(string="Consignee Name")
     final_port = fields.Many2one("freight.port", string="Final Port")
    
     def action_done(self):
-        print("shivaaaaaaaaaaa")
         active_id = self._context.get('active_id')
         record_id = self.env['new.manifist'].browse(active_id)
         vals = {'shipper_name': self.shipper_name,
@@ -33,16 +32,15 @@ class WizCustomerManifist(models.TransientModel):
         record_id.update({'manifist_line_ids': [(0,0,vals)]})
 
 
-
 class WizInvoice(models.TransientModel):
     """Transient Model for track Record."""
 
     _name = "wiz.invoice"
     _description = "Wiz invoice"
 
-
     def action_done(self):
         print("shivaaaaaaaaaaa")
+
 
 class WizLineInvoice(models.TransientModel):
     """Transient Model for track Record."""

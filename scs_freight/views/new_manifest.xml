@@ -15,6 +15,8 @@
                     <group>
                         <group>
                             <field name="arrive_date"/>
+                        </group>
+                        <group>
                             <field name="loading_port_id"/>
                             <field name="discharg_port_id"/>
                         </group>
@@ -34,18 +36,13 @@
                                      <field name="final_port"/>
                                       <button name="my_invoicing" string="Invoicing" type="object"
                                               class="btn btn-primary"/>
-                                        <button name="unlink" type="object" string="Delete"/>
+                                        <button name="unlink" type="object" string="Delete" class="btn btn-danger"
+                                                confirm="Are you sure you want to delete this record?"/>
                                 </tree>
                             </field>
                         </page>
                     </notebook>
-                            
                 </sheet>
-                <!-- <div class="oe_chatter">
-                    <field name="message_follower_ids" />
-                    <field name="activity_ids" />
-                    <field name="message_ids" />
-                </div> -->
             </form>
         </field>
     </record>
