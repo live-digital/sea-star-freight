@@ -78,6 +78,7 @@
         "report/shipping_order.xml",
         "report/payment_receipt_report_view.xml",
         "report/report_registration.xml",
+        "report/manifist_report.xml",
     ],
     
     # Odoo App Store Specific

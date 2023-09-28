@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <data>
+
+        <record id="paperformat_hrsummary" model="report.paperformat">
+            <field name="name">Time Off Summary</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="report_custom_landscape" model="ir.actions.report">
+            <field name="name">Manifist Report</field>
+            <field name="model">new.manifist</field> <!-- Replace with your actual model name -->
+            <field name="report_type">qweb-pdf</field>
+            <field name="paperformat_id" ref="paperformat_hrsummary"/>
+            <field name="report_name">scs_freight.report_new_manifist</field>
+            <field name="report_file">scs_freight.report_new_manifist</field>
+            <field name="binding_model_id" ref="scs_freight.model_new_manifist"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="internal_layout">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+
+            <div class="header">
+                <div class="row">
+                    <div class="col-3">
+                        <strong style="font-size:16px !important">Vessel_Voyage :
+                            <span t-field="doc.shipping_id.name"/>
+                        </strong>
+                        <br/>
+                        <strong style="font-size:16px !important">Port Of Lading :
+                            <span t-field="doc.loading_port_id"/>
+                        </strong>
+                    </div>
+                    <div class="col-3">
+                        <strong style="font-size:16px !important">Date Of Arrival :
+                            <span t-field="doc.arrive_date"/>
+                        </strong>
+                        <br/>
+                        <strong style="font-size:16px !important">Port Of Discharge :
+                            <span t-field="doc.discharg_port_id"/>
+                        </strong>
+                    </div>
+                    <div class="col-4 text-center">
+                        <strong style="font-size:20px !important">
+                            <span t-esc="company.name"/>
+                        </strong>
+                    </div>
+                    <div class="col-2 text-right">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-right" alt="Logo"
+                             style="width:200px !important"/>
+                    </div>
+                </div>
+            </div>
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                 t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-raw="0"/>
+            </div>
+        </template>
+
+        <template id="report_new_manifist">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="scs_freight.internal_layout">
+                        <div class="page">
+                            <t t-if="doc.manifist_line_ids">
+                                <t t-set="count" t-value="1"/>
+                                <t t-foreach="doc.manifist_line_ids" t-as="line">
+                                    <div class="row" style="border:1px solid black">
+                                        <div class="col-12 pt16 pb16"
+                                             style="padding-top:12px !important;padding-bottom:8px !important">
+
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <strong>Bill No :</strong>
+                                                </div>
+                                                <div class="col-2">
+                                                    <strong>Shipper Name :</strong>
+                                                </div>
+                                                <div class="col-3">
+                                                    <strong>Consignee Name :</strong>
+                                                </div>
+                                                <div class="col-3">
+                                                    <strong>Total Containers :
+                                                        <t t-esc="line.total_no_of_contanier"/>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3">
+                                                    <strong>Final Port :
+                                                        <t t-esc="line.final_port.name"/>
+                                                    </strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="padding-bottom:8px !important">
+                                                <div class="col-1">
+                                                    <strong>
+                                                        <t t-esc="count"/>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-2">
+                                                    <strong>
+                                                        <t t-esc="line.shipper_name"/>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3">
+                                                    <strong>
+                                                        <t t-esc="line.consignee_name"/>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3">
+                                                    <strong>Total Weight :
+                                                        <t t-esc="line.total_weight"/>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-3">
+                                                    <strong>Total Package :
+                                                        <t t-esc="line.total_package"/>
+                                                    </strong>
+                                                </div>
+                                            </div>
+
+                                            <table class="table table-bordered" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SL</th>
+                                                        <th>Weight</th>
+                                                        <th>No Packing</th>
+                                                        <th>Marks No</th>
+                                                        <th>Container No</th>
+                                                        <th>Packages</th>
+                                                        <th>Description</th>
+                                                        <th>Tariff</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>64500</td>
+                                                        <td>6129</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Unit</td>
+                                                        <td>SHEEPS</td>
+                                                        <td>Sheep</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                    <t t-set="count" t-value="count+1"/>
+                                </t>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>
