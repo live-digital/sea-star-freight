@@ -16,6 +16,8 @@ class NewManifist(models.Model):
     loading_port_id = fields.Many2one("freight.port", string="Port of Loading")
     discharg_port_id = fields.Many2one("freight.port", string="Port Of Discharge")
     arrive_date = fields.Date(string="Arrive Date")
+    document_no = fields.Char(string="Document No")
+    port_no = fields.Char(string="Port No")
     shipping_id = fields.Many2one("new.shipping",string="shipping")
     manifist_line_ids = fields.One2many(
         "new.manifist.line", "manifest_id", string="Order", copy=False
@@ -23,7 +25,6 @@ class NewManifist(models.Model):
 
 
     def my_button(self):
-        print("shivaaaaaaaaaaaaaaaaaaaa")
         return {
             'name': "Add Customer",
             'type': 'ir.actions.act_window',
@@ -44,13 +45,19 @@ class NewManifistLine(models.Model):
 
     manifest_id = fields.Many2one("new.manifist", string="Manifist", copy=False)
     shipper_name = fields.Char(string="Shipper Name")
-    consignee_name = fields.Char(string="Consignee Name")
+    consignee_name_id = fields.Many2one("res.partner", string="Consignee Name")
     total_no_of_contanier = fields.Char(string="Total Container")
     total_weight = fields.Char(string="Total Weight")
     total_package = fields.Char(string="Total Package")
     description = fields.Text(string="Description")
-    consignee_name = fields.Char(string="Consignee Name")
     final_port = fields.Many2one("freight.port", string="Final Port")
+    marks_no = fields.Char(string="Marks No")
+    container_no = fields.Char(string="container No")
+    weight = fields.Float('Weight')
+    no_packing = fields.Char('No Packing')
+    tariff = fields.Char(string="Tariff")
+    packages = fields.Char(string="Packages")
+
 
     def my_invoicing(self):
         return {

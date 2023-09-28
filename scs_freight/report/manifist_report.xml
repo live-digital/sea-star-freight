@@ -130,7 +130,7 @@
                                                 </div>
                                                 <div class="col-3">
                                                     <strong>
-                                                        <t t-esc="line.consignee_name"/>
+                                                        <t t-esc="line.consignee_name_id"/>
                                                     </strong>
                                                 </div>
                                                 <div class="col-3">

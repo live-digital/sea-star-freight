@@ -10,13 +10,20 @@
                     <group>
                         <group>
                             <field name="shipper_name"/>
-                            <field name="consignee_name"/>
+                            <field name="consignee_name_id"/>
+                            <field name="final_port"/>
                             <field name="total_no_of_contanier"/>
                             <field name="total_weight"/>
+                            <field name="tariff"/>
+                            <field name="packages"/>
                         </group>
                         <group>
                              <field name="final_port"/>
                              <field name="total_package"/>
+                             <field name="marks_no"/>
+                             <field name="container_no"/>
+                             <field name="weight"/>
+                             <field name="no_packing"/>
                              <field name="description"/>
                         </group>
                     </group>                      
@@ -46,12 +53,13 @@
                  <button name="action_done" string="Supplies invoice" type="object" style="margin-top=5px;width:200px;" class="btn-primary"/><br/><br/>
                  <button name="action_done" string="Other Services invoice" type="object" style="margin-top=5px;width:200px;" class="btn-primary"/><br/><br/>
                  <button name="action_done" string="Delivery Permit invoice" type="object" style="margin-top=5px;width:200px;" class="btn-primary"/><br/>
-            </form>
+           
             <footer>
                 <button class="btn btn-secondary" special="cancel">
                     <i class="fa fa-close" role="img"/> Close
                 </button>
             </footer>
+         </form>
         </field>
     </record>
 
@@ -70,12 +78,13 @@
                  <button name="delivery_permit_invoice" string="Freight prepaid invoice" type="object" style="margin-top=5px;width:200px;" class="btn-primary"/><br/><br/>
                  <button name="freight_prepaid_invoice" string="Quarantine invoice" type="object" style="margin-top=5px;width:200px;" class="btn-primary"/><br/><br/>
                  <button name="Quarantine_invoice" string="Delivery permit invoice" type="object" style="margin-top=5px;width:200px;" class="btn-primary"/><br/>
-            </form>
+           
             <footer>
                 <button class="btn btn-secondary" special="cancel">
                     <i class="fa fa-close" role="img"/> Close
                 </button>
             </footer>
+             </form>
         </field>
     </record>
 

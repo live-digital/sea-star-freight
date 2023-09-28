@@ -23,7 +23,7 @@ class FreightOperation(models.Model):
     )
     transport = fields.Selection(
         [("land", "Land"), ("ocean", "Ocean"), ("air", "Air")],
-        default="land",
+        default="ocean",
         string="Transport",
     )
     ocean_shipping = fields.Selection(

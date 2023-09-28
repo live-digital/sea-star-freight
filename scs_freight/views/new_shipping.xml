@@ -35,7 +35,7 @@
                                  class="oe_highlight"
                             />
                             <field name="is_there_freight_prepaid"/>
-                            <button
+                              <button
                                 name="action_freight_prepaid_bill"
                                 type="object"
                                 string="Create freight prepaid bill"
