@@ -27,7 +27,21 @@
                             <field name="loading_port_id" required="True"/>
                             <field name="discharg_port_id" required="True"/>
                             <field name="is_quarentine"/>
+                            <button
+                                 name="action_quarentine_bill"
+                                 type="object"
+                                 string="Create Quarentine Bill"
+                                 attrs="{'invisible': [('is_quarentine', '=', False)]}"
+                                 class="oe_highlight"
+                            />
                             <field name="is_there_freight_prepaid"/>
+                            <button
+                                name="action_freight_prepaid_bill"
+                                type="object"
+                                string="Create freight prepaid bill"
+                                attrs="{'invisible': [('is_there_freight_prepaid', '=', False)]}"
+                                class="oe_highlight"
+                                />
                         </group>
                         <group>
                             <field name="agent_id"/>

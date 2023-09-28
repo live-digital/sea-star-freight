@@ -49,7 +49,7 @@
             </form>
             <footer>
                 <button class="btn btn-secondary" special="cancel">
-                    <i class="fa fa-close" role="img"/> Cancel
+                    <i class="fa fa-close" role="img"/> Close
                 </button>
             </footer>
         </field>
@@ -73,7 +73,7 @@
             </form>
             <footer>
                 <button class="btn btn-secondary" special="cancel">
-                    <i class="fa fa-close" role="img"/> Cancel
+                    <i class="fa fa-close" role="img"/> Close
                 </button>
             </footer>
         </field>
