@@ -47,33 +47,35 @@
             </t>
 
             <div class="header">
-                <div class="row">
+                <div class="row no-gutters">
                     <div class="col-3">
-                        <strong style="font-size:16px !important">Vessel_Voyage :
+                        <strong style="font-size:14px !important">Vessel_Voyage :
                             <span t-field="doc.shipping_id.name"/>
                         </strong>
                         <br/>
-                        <strong style="font-size:16px !important">Port Of Lading :
+                        <strong style="font-size:14px !important">Port Of Lading :
                             <span t-field="doc.loading_port_id"/>
                         </strong>
                     </div>
                     <div class="col-3">
-                        <strong style="font-size:16px !important">Date Of Arrival :
+                        <strong style="font-size:14px !important">Date Of Arrival :
                             <span t-field="doc.arrive_date"/>
                         </strong>
                         <br/>
-                        <strong style="font-size:16px !important">Port Of Discharge :
+                        <strong style="font-size:14px !important">Port Of Discharge :
                             <span t-field="doc.discharg_port_id"/>
                         </strong>
                     </div>
-                    <div class="col-4 text-center">
-                        <strong style="font-size:20px !important">
-                            <span t-esc="company.name"/>
+                    <div class="col-2 text-center">
+                        <strong style="font-size:18px !important">
+                            LIVESTOCK IMPORT MANAFEST
                         </strong>
                     </div>
-                    <div class="col-2 text-right">
-                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-right" alt="Logo"
-                             style="width:200px !important"/>
+                    <div class="col-4 text-right">
+                        <img src="/scs_freight/static/src/img/logo1.jpeg" alt="Logo"
+                             style="width:270px !important;padding-right:8px !important"/>
+                        <img src="/scs_freight/static/src/img/logo2.jpeg" alt="Logo"
+                             style="width:90px !important"/>
                     </div>
                 </div>
             </div>
@@ -88,6 +90,7 @@
                 <t t-call="web.html_container">
                     <t t-call="scs_freight.internal_layout">
                         <div class="page">
+                            <div style="padding-top:20px"/>
                             <t t-if="doc.manifist_line_ids">
                                 <t t-set="count" t-value="1"/>
                                 <t t-foreach="doc.manifist_line_ids" t-as="line">
@@ -129,8 +132,8 @@
                                                     </strong>
                                                 </div>
                                                 <div class="col-3">
-                                                    <strong>
-                                                        <t t-esc="line.consignee_name_id"/>
+                                                    <strong t-if="line.consignee_name_id">
+                                                        <t t-esc="line.consignee_name_id.name"/>
                                                     </strong>
                                                 </div>
                                                 <div class="col-3">
@@ -145,7 +148,50 @@
                                                 </div>
                                             </div>
 
-                                            <table class="table table-bordered" width="100%">
+                                            <div class="row" style="border:1px solid black;margin-right:1px;margin-left:1px;">
+                                                <div class="col-12">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-6">
+                                                            <div class="row">
+                                                                <div class="col-2">SL</div>
+                                                                <div class="col-3">Weight</div>
+                                                                <div class="col-3">No Packing</div>
+                                                                <div class="col-4">Marks No</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="row">
+                                                                <div class="col-3">Container No</div>
+                                                                <div class="col-3">Packages</div>
+                                                                <div class="col-3">Description</div>
+                                                                <div class="col-3">Tariff</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="row no-gutters">
+                                                        <div class="col-6">
+                                                            <div class="row">
+                                                                <div class="col-2">1</div>
+                                                                <div class="col-3"> <t t-esc="line.weight"/></div>
+                                                                <div class="col-3"><t t-esc="line.no_packing"/></div>
+                                                                <div class="col-4"><t t-esc="line.marks_no"/></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="row">
+                                                                <div class="col-3"><t t-esc="line.container_no"/></div>
+                                                                <div class="col-3"><t t-esc="line.packages"/></div>
+                                                                <div class="col-3"><t t-esc="line.description"/></div>
+                                                                <div class="col-3"><t t-esc="line.tariff"/></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <table class="table table-bordered d-none" width="100%" style="display:none">
                                                 <thead>
                                                     <tr>
                                                         <th>SL</th>
