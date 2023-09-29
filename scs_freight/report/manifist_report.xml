@@ -56,14 +56,18 @@
                         <strong style="font-size:14px !important">Port Of Lading :
                             <span t-field="doc.loading_port_id"/>
                         </strong>
+                        <br/>
+                        <strong style="font-size:14px !important">Port Of Discharge :
+                            <span t-field="doc.discharg_port_id"/>
+                        </strong>
                     </div>
                     <div class="col-3">
                         <strong style="font-size:14px !important">Date Of Arrival :
                             <span t-field="doc.arrive_date"/>
                         </strong>
                         <br/>
-                        <strong style="font-size:14px !important">Port Of Discharge :
-                            <span t-field="doc.discharg_port_id"/>
+                        <strong style="font-size:14px !important">Ship Name :
+                            <span t-field="doc.shipping_id.shipname"/>
                         </strong>
                     </div>
                     <div class="col-2 text-center">
