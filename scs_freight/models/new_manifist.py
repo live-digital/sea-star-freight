@@ -4,6 +4,7 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from datetime import datetime
+from odoo.exceptions import UserError, ValidationError
 
 class NewManifist(models.Model):
     """For New Manifest"""
@@ -35,6 +36,17 @@ class NewManifist(models.Model):
             'target': 'new'
         }
 
+
+    @api.model
+    def create(self, vals):
+        record = super(NewManifist, self).create(vals)
+        found_manifest_ids = self.env['new.manifist'].search([('shipping_id', '=', record.shipping_id.id)])
+        if len(found_manifest_ids) > 1:
+            raise ValidationError(_('We Have alredy created a manifest for this shipment.'))
+        return record
+
+
+  
 
 class NewManifistLine(models.Model):
     """For New Manifest"""

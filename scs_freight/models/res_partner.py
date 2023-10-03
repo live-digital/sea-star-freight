@@ -10,3 +10,5 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     agent = fields.Boolean(string="Is Agent?")
+
+
