@@ -7,15 +7,15 @@ class NewShipping(models.Model):
     _name = "new.shipping"
     _description = "New Shipment"
 
-    name = fields.Char(string="Shipment Name",default="New")
-    shipname = fields.Char(string="Ship Name")
+    name = fields.Char(string="Shipment Name")
+    shipname_id = fields.Many2one("freight.vessels", string="Ship Name")
     country_id = fields.Many2one("res.country", string="Country")
     loading_port_id = fields.Many2one("freight.port", string="Loading Port")
     discharg_port_id = fields.Many2one("freight.port", string="Discharging Port")
-    agent_id = fields.Many2one("res.partner", string="Agent")
-    captain_id = fields.Many2one("res.partner", string="Captain")
+    agent_id = fields.Many2one("res.partner", string="Agent",domain="[('agent', '=', True)]")
+    captain = fields.Char(string="Captain")
     arrive_date = fields.Date(string="Arrive Date")
-    is_quarentine = fields.Boolean(string="Is Quarentine", default=False)
+    is_quarantine = fields.Boolean(string="Is Quarantine", default=False)
     is_there_freight_prepaid = fields.Boolean(string="Is There Freight Prepaid", default=False)
     attachment = fields.Char(string='Attachments Link')
 
@@ -24,7 +24,7 @@ class NewShipping(models.Model):
         res = super(NewShipping, self).create(vals)
         if vals and vals.get("loading_port_id", False):
             seq = self.env["ir.sequence"].next_by_code("new.shipping")
-            res.name = res.shipname + '_' + res.loading_port_id.code + '_' + seq + '/' + str(datetime.today().year)
+            res.name = res.shipname_id.name + '_' + res.loading_port_id.code + '_' + seq + '/' + str(datetime.today().year)
         return res
 
     def action_quarentine_bill(self):

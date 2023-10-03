@@ -10,8 +10,8 @@
                 <field name="code" />
                 <field name="country_id" />
                 <field name="state_id" />
-                <field name="is_ocean" />
-<!--                <field name="is_land" />-->
+                <field name="is_ocean" invisible="True"/>
+<!--                <field name="is_land"/>-->
 <!--                <field name="is_air" />-->
             </tree>
         </field>
@@ -27,14 +27,15 @@
                         <group>
                             <field name="name" required="1" />
                             <field name="country_id" />
-                            <field name="is_ocean" />
+                            <field name="active" />
+                            <field name="is_ocean" invisible="True" />
 <!--                            <field name="is_land" />-->
 <!--                            <field name="is_air" />-->
                         </group>
                         <group>
                             <field name="code" required="1" />
                             <field name="state_id" />
-                            <field name="active" />
+                          
                         </group>
                     </group>
                 </sheet>
@@ -52,7 +53,7 @@
         <field name="name">vessels.config.tree.view</field>
         <field name="model">freight.vessels</field>
         <field name="arch" type="xml">
-            <tree string="Vessels">
+            <tree string="Ships">
                 <field name="code" />
                 <field name="name" />
                 <field name="country_id" />
@@ -64,7 +65,7 @@
         <field name="name">vessels.config.form.view</field>
         <field name="model">freight.vessels</field>
         <field name="arch" type="xml">
-            <form string="Vessels">
+            <form string="Ships">
                 <sheet>
                     <group>
                         <group>
@@ -88,7 +89,7 @@
     </record>
     <!-- Vessels Action -->
     <record id="vessels_config_action" model="ir.actions.act_window">
-        <field name="name">Vessels</field>
+        <field name="name">Ships</field>
         <field name="res_model">freight.vessels</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -255,7 +256,7 @@
     <!-- Vessels Menu -->
     <menuitem
         id="vessels_menu"
-        name="Vessels"
+        name="Ships"
         parent="main_menu_freight_config"
         action="vessels_config_action"
         sequence="2"

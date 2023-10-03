@@ -18,7 +18,7 @@ class FreightPort(models.Model):
         "res.country.state", string="State", domain="[('country_id', '=', country_id)]"
     )
     is_land = fields.Boolean(string="Land")
-    is_ocean = fields.Boolean(string="Ocean")
+    is_ocean = fields.Boolean(string="Ocean",default=True)
     is_air = fields.Boolean(string="Air")
     active = fields.Boolean(string="Active", default=True)
 

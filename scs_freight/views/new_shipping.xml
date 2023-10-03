@@ -17,24 +17,31 @@
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
                         <h2>
-                            <field name="name"/>
+                            <field name="name" readonly="True"/>
                         </h2>
                     </div>
-                    <group col="2">
+                    <group>
                         <group>
-                             <field name="shipname" required="True"/>
+                             <field name="shipname_id" required="True"/>
                             <field name="country_id" required="True"/>
                             <field name="loading_port_id" required="True"/>
                             <field name="discharg_port_id" required="True"/>
-                            <field name="is_quarentine"/>
+                            <field name="is_quarantine"/>
                             <button
                                  name="action_quarentine_bill"
                                  type="object"
-                                 string="Create Quarentine Bill"
-                                 attrs="{'invisible': [('is_quarentine', '=', False)]}"
+                                 string="Create Quarantine Bill"
+                                 attrs="{'invisible': [('is_quarantine', '=', False)]}"
                                  class="oe_highlight"
                             />
-                            <field name="is_there_freight_prepaid"/>
+                           
+                        </group>
+                        <group>
+                            <field name="agent_id"/>
+                            <field name="captain" required="True"/>
+                            <field name="arrive_date"/>
+                            <field name="attachment" widget="url"/>
+                             <field name="is_there_freight_prepaid"/>
                               <button
                                 name="action_freight_prepaid_bill"
                                 type="object"
@@ -42,12 +49,6 @@
                                 attrs="{'invisible': [('is_there_freight_prepaid', '=', False)]}"
                                 class="oe_highlight"
                                 />
-                        </group>
-                        <group>
-                            <field name="agent_id"/>
-                            <field name="captain_id" required="True"/>
-                            <field name="arrive_date"/>
-                            <field name="attachment" widget="url"/>
                         </group>
                     </group>
                 </sheet>
@@ -61,7 +62,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" string="Shipment"/>
-                <field name="shipname" string="Ship Name"/>
+                <field name="shipname_id" string="Ship Name"/>
                 <field name="loading_port_id"/>
                 <field name="discharg_port_id"/>
             </tree>

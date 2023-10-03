@@ -27,9 +27,9 @@
     <menuitem
         id="menu_services"
         name="Services"
-        parent="main_menu_master_data"
+        parent="menu_vendor"
         action="product_action"
-        sequence="1"
+        sequence="4"
         groups="freight_operation_admin"
     />
 </odoo>

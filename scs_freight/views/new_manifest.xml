@@ -28,7 +28,7 @@
             <notebook>
                 <page string="Manifist">
                     <field name="manifist_line_ids">
-                        <tree editable="top">
+                           <tree create="0">
                             <field name="shipper_name"/>
                             <field name="consignee_name_id"/>
                             <field name="total_no_of_contanier" />

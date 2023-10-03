@@ -67,7 +67,7 @@
                         </strong>
                         <br/>
                         <strong style="font-size:14px !important">Ship Name :
-                            <span t-field="doc.shipping_id.shipname"/>
+                            <span t-field="doc.shipping_id.shipname_id"/>
                         </strong>
                     </div>
                     <div class="col-2 text-center">
