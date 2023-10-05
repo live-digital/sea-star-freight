@@ -52,6 +52,11 @@ class NewShipping(models.Model):
         #     self.delivery_price = 0
 
     def get_manifest(self):
+        context = {'default_shipping_id': self.id, 'default_loading_port_id': self.loading_port_id.id,
+                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date,'shipment_id':self.id}
+        manifest = self.env['new.manifist'].sudo().search([('shipping_id','=',self.id)])
+        if manifest:
+            context['create'] = False
         return {
             'name': 'Manifest',
             'type': 'ir.actions.act_window',
@@ -59,8 +64,7 @@ class NewShipping(models.Model):
             'res_model': 'new.manifist',
             'target': 'current',
             'domain': [('shipping_id', '=', self.id)],
-            'context': {'default_shipping_id': self.id, 'default_loading_port_id': self.loading_port_id.id,
-                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date,'shipment_id':self.id}
+            'context': context
         }
 
     def get_services(self):
