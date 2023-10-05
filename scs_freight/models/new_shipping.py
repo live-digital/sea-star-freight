@@ -16,7 +16,7 @@ class NewShipping(models.Model):
     captain = fields.Char(string="Captain")
     arrive_date = fields.Date(string="Arrive Date")
     is_quarantine = fields.Boolean(string="Is Quarantine", default=False)
-    is_there_freight_prepaid = fields.Boolean(string="Is There Freight Prepaid", default=False)
+    is_there_freight_prepaid = fields.Boolean(string="Is Freight Prepaid", default=False)
     attachment = fields.Char(string='Attachments Link')
 
     @api.model
@@ -33,6 +33,24 @@ class NewShipping(models.Model):
     def action_freight_prepaid_bill(self):
         print("action")
 
+    # @api.onchange('agent_id')
+    # def _onchange_captain(self):
+    #     print(">>>>>>>>>>>???????????????????????_onchange_captain")
+    #     sale_order = self.env['sale.order'].search([('state','in',['sale','sent'])])
+    #     print(">>>>>>>>>>>???????????????????????_onchange_captain",sale_order)
+    #     for rec in self:
+    #         rec.capt = 'shiva'
+
+
+        # self.delivery_message = False
+        # if self.delivery_type in ('fixed', 'base_on_rule'):
+        #     vals = self._get_shipment_rate()
+        #     if vals.get('error_message'):
+        #         return {'error': vals['error_message']}
+        # else:
+        #     self.display_price = 0
+        #     self.delivery_price = 0
+
     def get_manifest(self):
         return {
             'name': 'Manifest',
@@ -42,7 +60,7 @@ class NewShipping(models.Model):
             'target': 'current',
             'domain': [('shipping_id', '=', self.id)],
             'context': {'default_shipping_id': self.id, 'default_loading_port_id': self.loading_port_id.id,
-                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date}
+                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date,'shipment_id':self.id}
         }
 
     def get_services(self):

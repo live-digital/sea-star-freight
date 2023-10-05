@@ -23,17 +23,18 @@
                     <group>
                         <group>
                              <field name="shipname_id" required="True"/>
-                            <field name="country_id" required="True"/>
+                            <field name="country_id"/>
                             <field name="loading_port_id" required="True"/>
                             <field name="discharg_port_id" required="True"/>
-                            <field name="is_quarantine"/>
+                            
+                            <!-- <field name="is_quarantine"/>
                             <button
                                  name="action_quarentine_bill"
                                  type="object"
                                  string="Create Quarantine Bill"
                                  attrs="{'invisible': [('is_quarantine', '=', False)]}"
                                  class="oe_highlight"
-                            />
+                            /> -->
                            
                         </group>
                         <group>
@@ -41,8 +42,38 @@
                             <field name="captain" required="True"/>
                             <field name="arrive_date"/>
                             <field name="attachment" widget="url"/>
-                             <field name="is_there_freight_prepaid"/>
+                            <!--  <field name="is_there_freight_prepaid"/>
                               <button
+                                name="action_freight_prepaid_bill"
+                                type="object"
+                                string="Create freight prepaid bill"
+                                attrs="{'invisible': [('is_there_freight_prepaid', '=', False)]}"
+                                class="oe_highlight"
+                                /> -->
+                        </group>
+                    </group>
+                    <group col="8">
+                        <group col="2">
+                           <field name="is_quarantine"/>
+                        </group>
+                        <group col="2">
+                             <button
+                                 name="action_quarentine_bill"
+                                 type="object"
+                                 string="Create Quarantine Bill"
+                                 attrs="{'invisible': [('is_quarantine', '=', False)]}"
+                                 class="oe_highlight"
+                            />
+                        </group>
+                        <group>
+                        </group>
+                        
+                        <group col="2">
+                           <field name="is_there_freight_prepaid"/>
+                        </group>
+                     
+                        <group col="2">
+                            <button
                                 name="action_freight_prepaid_bill"
                                 type="object"
                                 string="Create freight prepaid bill"
@@ -51,6 +82,27 @@
                                 />
                         </group>
                     </group>
+
+                    <!-- <table>
+                        <tr>
+                            <td><field name="is_quarantine"/></td>
+                             <td> <button
+                                 name="action_quarentine_bill"
+                                 type="object"
+                                 string="Create Quarantine Bill"
+                                 attrs="{'invisible': [('is_quarantine', '=', False)]}"
+                                 class="oe_highlight"
+                            /></td>
+                              <td><field name="is_there_freight_prepaid"/></td>
+                               <td><button
+                                name="action_freight_prepaid_bill"
+                                type="object"
+                                string="Create freight prepaid bill"
+                                attrs="{'invisible': [('is_there_freight_prepaid', '=', False)]}"
+                                class="oe_highlight"
+                                /></td>
+                        </tr>
+                    </table> -->
                 </sheet>
             </form>
         </field>

@@ -22,7 +22,7 @@
                         </group>
                         <group>
                             <field name="document_no"/>
-                            <field name="port_no"/>
+                            <field name="road_no"/>
                        </group>
             </group>
             <notebook>
