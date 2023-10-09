@@ -27,29 +27,24 @@
                             <field name="loading_port_id" required="True"/>
                             <field name="discharg_port_id" required="True"/>
                             
-                            <!-- <field name="is_quarantine"/>
-                            <button
-                                 name="action_quarentine_bill"
-                                 type="object"
-                                 string="Create Quarantine Bill"
-                                 attrs="{'invisible': [('is_quarantine', '=', False)]}"
-                                 class="oe_highlight"
-                            /> -->
+                          
                            
                         </group>
                         <group>
                             <field name="agent_id"/>
-                            <field name="captain" required="True"/>
+                            <field name="captain"/>
                             <field name="arrive_date"/>
+                             <label for="hijri_date" string="Hijri Date"/>
+                                <div class="d-flex">
+                                    <field name="hijri_date"/>
+                                    <!-- <span class="o_form_label mx-6 oe_edit_only"/> -->
+                                    <label for="gregorian_date" string="Gregorian Date"/>
+                                    <field name="gregorian_date"/>
+                                </div>
+                        
+
                             <field name="attachment" widget="url"/>
-                            <!--  <field name="is_there_freight_prepaid"/>
-                              <button
-                                name="action_freight_prepaid_bill"
-                                type="object"
-                                string="Create freight prepaid bill"
-                                attrs="{'invisible': [('is_there_freight_prepaid', '=', False)]}"
-                                class="oe_highlight"
-                                /> -->
+                            
                         </group>
                     </group>
                     <group col="8">

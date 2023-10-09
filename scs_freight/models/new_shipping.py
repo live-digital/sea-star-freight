@@ -15,6 +15,8 @@ class NewShipping(models.Model):
     agent_id = fields.Many2one("res.partner", string="Agent",domain="[('agent', '=', True)]")
     captain = fields.Char(string="Captain")
     arrive_date = fields.Date(string="Arrive Date")
+    hijri_date = fields.Date(string="Hijri Date")
+    gregorian_date = fields.Date(string="Gregorian Date")
     is_quarantine = fields.Boolean(string="Is Quarantine", default=False)
     is_there_freight_prepaid = fields.Boolean(string="Is Freight Prepaid", default=False)
     attachment = fields.Char(string='Attachments Link')
@@ -33,27 +35,11 @@ class NewShipping(models.Model):
     def action_freight_prepaid_bill(self):
         print("action")
 
-    # @api.onchange('agent_id')
-    # def _onchange_captain(self):
-    #     print(">>>>>>>>>>>???????????????????????_onchange_captain")
-    #     sale_order = self.env['sale.order'].search([('state','in',['sale','sent'])])
-    #     print(">>>>>>>>>>>???????????????????????_onchange_captain",sale_order)
-    #     for rec in self:
-    #         rec.capt = 'shiva'
-
-
-        # self.delivery_message = False
-        # if self.delivery_type in ('fixed', 'base_on_rule'):
-        #     vals = self._get_shipment_rate()
-        #     if vals.get('error_message'):
-        #         return {'error': vals['error_message']}
-        # else:
-        #     self.display_price = 0
-        #     self.delivery_price = 0
+  
 
     def get_manifest(self):
         context = {'default_shipping_id': self.id, 'default_loading_port_id': self.loading_port_id.id,
-                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date,'shipment_id':self.id}
+                        'default_discharg_port_id': self.discharg_port_id.id, 'default_arrive_date':self.arrive_date,'default_hijri_date':self.hijri_date,'default_gregorian_date':self.gregorian_date,'shipment_id':self.id}
         manifest = self.env['new.manifist'].sudo().search([('shipping_id','=',self.id)])
         if manifest:
             context['create'] = False

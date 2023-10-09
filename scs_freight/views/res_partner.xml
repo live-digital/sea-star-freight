@@ -7,6 +7,8 @@
         <field name="arch" type="xml">
             <xpath expr="." position="inside">
                 <filter name="agent" string="Agents" domain="[('agent','=', True)]" />
+                <filter name="shipper" string="Shipper" domain="[('shipper','=', True)]"/>
+
             </xpath>
         </field>
     </record>
@@ -19,7 +21,13 @@
         <field name="arch" type="xml">
             <field name="vat" position="after">
                 <field name="agent" />
+                <field name="shipper" />
             </field>
+             <field name="type" position="after">
+                    <field name="name_2" />
+            </field>
+
+
         </field>
     </record>
     <!--  <record model="ir.ui.view" id="account_move_inherit_view">
@@ -64,6 +72,16 @@
         >{'default_agent':1, 'search_default_agent':1, 'res_partner_search_mode': 'agent'}</field>
     </record>
 
+    <record id="action_agent_shipper" model="ir.actions.act_window">
+        <field name="name">Shipper</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <!--    <field name="domain">[('customer', '=', True)]</field> -->
+         <field
+            name="context"
+        >{'default_shipper':1, 'search_default_shipper':1, 'res_partner_search_mode': 'shipper'}</field>
+    </record>
+
   
     <menuitem
         id="main_menu_master_data"
@@ -103,7 +121,7 @@
         id="menu_vendor_sub"
         name="Vendor"
         parent="menu_vendor"
-        sequence="3"
+        sequence="4"
         action="action_vendor_partner"
     />
     <menuitem
@@ -120,5 +138,13 @@
         parent="menu_vendor"
         sequence="2"
         action="action_agent_partner"
+    />
+
+    <menuitem
+        id="menu_partner_shipper"
+        name="Shipper"
+        parent="menu_vendor"
+        sequence="3"
+        action="action_agent_shipper"
     />
 </odoo>

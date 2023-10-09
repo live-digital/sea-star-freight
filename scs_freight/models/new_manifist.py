@@ -14,10 +14,21 @@ class NewManifist(models.Model):
     _description = "New Manifist"
     _rec_name = "arrive_date"
 
+    @api.model
+    def default_get(self, fields):
+        res = super(NewManifist, self).default_get(fields)
+        if self.env.context.get("default_shipping_id") :
+            shipping = self.search([('shipping_id','=',self.env.context.get("default_shipping_id"))])
+            if shipping:
+                raise ValidationError(_('Manifest Already Created !'))
+        return res
+
 
     loading_port_id = fields.Many2one("freight.port", string="Port of Loading")
     discharg_port_id = fields.Many2one("freight.port", string="Port Of Discharge")
     arrive_date = fields.Date(string="Arrive Date")
+    hijri_date = fields.Date(string="Hijri Date")
+    gregorian_date = fields.Date(string="Gregorian Date")
     document_no = fields.Char(string="Document No")
     road_no = fields.Char(string="Road No")
     shipping_id = fields.Many2one("new.shipping",string="shipping")
@@ -27,6 +38,7 @@ class NewManifist(models.Model):
 
 
     def my_button(self):
+        context = {'default_final_port': self.discharg_port_id.id,}
         return {
             'name': "Add Customer",
             'type': 'ir.actions.act_window',
@@ -34,6 +46,7 @@ class NewManifist(models.Model):
             'view_mode': 'form',
             'res_model': 'wiz.customer.manifist',
             'view_id': self.env.ref('scs_freight.wiz_customer_manifiest_view').id,
+            'context': context,
             'target': 'new'
         }
 
@@ -88,6 +101,7 @@ class NewManifistLine(models.Model):
 
 
     def my_invoicing(self):
+         
         return {
             'name': '',
             'type': 'ir.actions.act_window',

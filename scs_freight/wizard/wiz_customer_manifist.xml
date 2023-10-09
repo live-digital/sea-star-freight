@@ -10,21 +10,37 @@
                     <group>
                         <group>
                             <field name="shipper_name"/>
-                            <field name="consignee_name_id"/>
                             <field name="final_port"/>
                             <field name="total_no_of_contanier"/>
                             <field name="total_weight"/>
-                            <field name="tariff"/>
-                            <field name="packages"/>
+                            <field name="total_package"/>
+
+                           
+                            
                         </group>
                         <group>
-                             <field name="final_port"/>
-                             <field name="total_package"/>
+                            <field name="consignee_name_id"/>
                              <field name="marks_no"/>
-                             <field name="container_no"/>
-                             <field name="weight"/>
-                             <field name="no_packing"/>
-                             <field name="description"/>
+                              <field name="container_no"/>
+                               <label for="description" string="Description"/>
+                                <div class="d-flex">
+                                    <field name="description_arabic"/>
+
+                                    <field name="description"/>
+                                </div>
+                                 <label for="packages" string="Packege Type"/>
+                                <div class="d-flex">
+                                    <field name="packages_arabic"/>
+
+                                    <field name="packages"/>
+                                </div>
+                                 <label for="tariff" string="Tariff"/>
+                                <div class="d-flex">
+                                    <field name="tariff_arabic"/>
+
+                                    <field name="tariff"/>
+                                </div>
+                                <!-- <field name="tariff"/> -->
                         </group>
                     </group>                      
                                    

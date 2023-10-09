@@ -12,6 +12,7 @@ class FreightPort(models.Model):
     _description = "Ports Details"
 
     name = fields.Char(string="Name")
+    arabic_name = fields.Char(string="Arabic Name")
     code = fields.Char(string="Code")
     country_id = fields.Many2one("res.country", string="Country")
     state_id = fields.Many2one(
@@ -36,12 +37,13 @@ class FreightVessels(models.Model):
     _description = "Vessels(Boat) Details."
 
     name = fields.Char(string="Name")
+    arabic_name = fields.Char(string="Arabic Name")
     code = fields.Char(string="Code")
     country_id = fields.Many2one("res.country", string="Country")
     note = fields.Text(string="Note")
     active = fields.Boolean(string="Active", default=True)
     transport = fields.Selection(
-        [("land", "Land"), ("ocean", "Ocean"), ("air", "Air")], default="land"
+        [("land", "Land"), ("ocean", "Ocean"), ("air", "Air")], default="ocean"
     )
 
 

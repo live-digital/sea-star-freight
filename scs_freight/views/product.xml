@@ -29,7 +29,7 @@
         name="Services"
         parent="menu_vendor"
         action="product_action"
-        sequence="4"
+        sequence="5"
         groups="freight_operation_admin"
     />
 </odoo>

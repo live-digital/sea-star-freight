@@ -11,7 +11,7 @@ class WizCustomerManifist(models.TransientModel):
     _name = "wiz.customer.manifist"
     _description = "Wiz Customer Manifist"
 
-    shipper_name = fields.Char(string="Shipper Name")
+    shipper_name = fields.Many2one("res.partner", string="Shipper Name",domain="[('shipper', '=', True)]")
     marks_no = fields.Char(string="Marks No")
     container_no = fields.Char(string="container No")
     consignee_name_id = fields.Many2one("res.partner", string="Consignee Name")
@@ -20,15 +20,18 @@ class WizCustomerManifist(models.TransientModel):
     total_package = fields.Char(string="Total Package")
     weight = fields.Float('Weight')
     no_packing = fields.Char('No Packing')
-    description = fields.Text(string="Description")
-    tariff = fields.Char(string="Tariff")
+    description = fields.Char(string="Description" ,default="Sheeps")
+    description_arabic = fields.Char(string="Description Arabic",default="ضأن")
+    tariff = fields.Char(string="Tariff",default="Sheep")
+    tariff_arabic = fields.Char(string="Tariff Arabic",default="الأغنام")
     final_port = fields.Many2one("freight.port", string="Final Port")
-    packages = fields.Char(string="Packages")
+    packages = fields.Char(string="Package Type",default="Unit")
+    packages_arabic = fields.Char(string="Package Type Arabic",default="وحدة")
    
     def action_done(self):
         active_id = self._context.get('active_id')
         record_id = self.env['new.manifist'].browse(active_id)
-        vals = {'shipper_name': self.shipper_name,
+        vals = {'shipper_name': self.shipper_name.name,
                 'total_no_of_contanier': self.total_no_of_contanier,
                 'total_weight' : self.total_weight,
                 'total_package' : self.total_package,

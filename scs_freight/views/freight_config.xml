@@ -26,7 +26,7 @@
                     <group>
                         <group>
                             <field name="name" required="1" />
-                            <field name="country_id" />
+                            <field name="arabic_name"/>
                             <field name="active" />
                             <field name="is_ocean" invisible="True" />
 <!--                            <field name="is_land" />-->
@@ -34,7 +34,9 @@
                         </group>
                         <group>
                             <field name="code" required="1" />
-                            <field name="state_id" />
+                            <field name="country_id" />
+
+                            <!-- <field name="state_id" /> -->
                           
                         </group>
                     </group>
@@ -70,12 +72,15 @@
                     <group>
                         <group>
                             <field name="name" required="1" />
-                            <field name="country_id" />
-                            <field name="transport" />
+                            <field name="arabic_name"/>
+                            <field name="active" />
+                            <field name="transport" invisible="True" />
                         </group>
                         <group>
                             <field name="code" />
-                            <field name="active" />
+                            <field name="country_id" />
+
+                            
                         </group>
                     </group>
                     <notebook>
